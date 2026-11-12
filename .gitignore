@@ -1,0 +1,14 @@
+# Environment & Secrets (NEVER commit .env)
+.env
+.env.local
+.env.*.local
+
+# Dependencies & Logs
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS Junk
+.DS_Store
+Thumbs.db
