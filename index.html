@@ -2176,7 +2176,7 @@
     .qr-prize-sub {
       font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
       font-style: italic;
-      font-weight: 800;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: #ffffff;
@@ -2823,22 +2823,36 @@
       display: block;
     }
 
+    .qr-prize-follow:empty {
+      display: none;
+    }
+
     @media (max-aspect-ratio: 9/10) {
       .kiosk-dock {
-        top: clamp(82px, 9.6vh, 186px);
-        left: clamp(16px, 3vw, 56px);
+        top: calc(clamp(14px, 3.6vh, 52px) + clamp(44px, 10.2vw, 120px) + clamp(18px, 2.2vh, 36px));
+        left: clamp(16px, 3.5vw, 60px);
         right: auto;
         bottom: auto;
         transform: none;
+        gap: clamp(8px, 1.25vw, 16px);
+      }
+      #gameContainer.is-screen-complete .kiosk-dock,
+      #gameContainer.is-screen-leaderboard .kiosk-dock,
+      #gameContainer.is-screen-countdown .kiosk-dock,
+      #gameContainer.is-screen-playing .kiosk-dock {
+        top: calc(clamp(14px, 2.5vh, 38px) + clamp(36px, 8.2vw, 96px) + clamp(14px, 1.6vh, 26px));
       }
       .kiosk-dock-btn {
-        height: clamp(36px, 5.8vw, 62px);
-        padding: 0 clamp(11px, 2.1vw, 22px);
-        font-size: clamp(0.8rem, 2.25vw, 1.5rem);
+        height: clamp(28px, 3.8vw, 42px);
+        padding: 0 clamp(9px, 1.35vw, 16px);
+        gap: clamp(4px, 0.5vw, 7px);
+        font-size: clamp(0.66rem, 1.55vw, 1.05rem);
+        border-width: 1.2px;
+        box-shadow: 0 0 8px rgba(245, 178, 52, 0.24), 0 3px 9px rgba(0, 0, 0, 0.68);
       }
       .kiosk-dock-icon {
-        width: clamp(14px, 2.5vw, 26px);
-        height: clamp(14px, 2.5vw, 26px);
+        width: clamp(11px, 1.7vw, 18px);
+        height: clamp(11px, 1.7vw, 18px);
       }
     }
 
@@ -2851,15 +2865,25 @@
         height: clamp(30px, 8.2vw, 42px);
       }
       .kiosk-dock {
-        top: 66px;
+        top: 84px;
         left: 12px;
-        gap: 5px;
+        gap: 6px;
+      }
+      #gameContainer.is-screen-complete .kiosk-dock,
+      #gameContainer.is-screen-leaderboard .kiosk-dock,
+      #gameContainer.is-screen-countdown .kiosk-dock,
+      #gameContainer.is-screen-playing .kiosk-dock {
+        top: 66px;
       }
       .kiosk-dock-btn {
-        height: 31px;
-        padding: 0 9px;
+        height: 27px;
+        padding: 0 8px;
         gap: 4px;
-        font-size: 0.72rem;
+        font-size: 0.66rem;
+      }
+      .kiosk-dock-icon {
+        width: 11px;
+        height: 11px;
       }
       .reg-content,
       .lb-content,
@@ -2933,10 +2957,11 @@
         max-height: 210px;
       }
       .cc-content {
-        padding-top: 106px;
+        justify-content: space-evenly;
+        padding-top: 98px;
         padding-left: 10px;
         padding-right: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 16px;
         gap: 5px;
       }
       .cc-header-lockup {
@@ -3040,6 +3065,253 @@
       .cc-btn-label {
         font-size: 0.76rem;
         padding: 0 10px;
+      }
+    }
+
+    @media (max-width: 540px) and (min-height: 860px) {
+      .cc-content {
+        justify-content: space-evenly;
+        padding-top: 98px;
+        padding-bottom: 22px;
+        gap: 6px;
+      }
+      .cc-headline-top {
+        font-size: clamp(1.25rem, 4.8vw, 1.65rem);
+      }
+      .cc-headline-main {
+        font-size: clamp(1.95rem, 7.8vw, 2.75rem);
+      }
+      .qr-prize-large .qr-canvas-el {
+        width: clamp(160px, min(38vw, 20vh), 215px);
+        height: clamp(160px, min(38vw, 20vh), 215px);
+      }
+      .qr-prize-sub {
+        font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+        font-weight: 900;
+      }
+      .cc-btn-hex {
+        width: clamp(160px, 40vw, 205px);
+        height: 48px;
+      }
+      .cc-btn-hex-wide {
+        width: clamp(195px, 48vw, 240px);
+      }
+      .cc-btn-label {
+        font-size: 0.85rem;
+      }
+      .reg-kb-key {
+        height: 42px;
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+      .reg-kb-key-fn {
+        font-size: 0.82rem;
+        font-weight: 900;
+      }
+    }
+
+    /* ============================================================
+       KIOSK PORTRAIT 9:16 OPTIMIZATIONS (1080x1920 + DPI-scaled portrait kiosks)
+       Placed at end of stylesheet so cascade order is guaranteed.
+       ============================================================ */
+    @media (max-aspect-ratio: 9/10) and (min-width: 541px) {
+      #gameContainer {
+        width: 100%;
+        height: 100%;
+        max-width: 1080px;
+        max-height: 1920px;
+        margin: 0 auto;
+      }
+
+      /* --- End Screen: Balanced vertical fit (prevents bottom crowding) --- */
+      .cc-content {
+        justify-content: space-evenly;
+        padding-top: clamp(118px, 11.8vh, 214px);
+        padding-bottom: clamp(22px, 2.8vh, 48px);
+        gap: clamp(6px, 0.9vh, 16px);
+      }
+      .cc-flag-svg {
+        width: clamp(60px, min(12.5vw, 6.8vh), 140px);
+      }
+      .cc-headline-top {
+        font-size: clamp(1.65rem, min(5.4vw, 3.1vh), 4.2rem);
+        letter-spacing: 0.05em;
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.95));
+      }
+      .cc-headline-main {
+        font-size: clamp(2.65rem, min(9.4vw, 5.4vh), 7.2rem);
+        letter-spacing: 0.03em;
+        filter: drop-shadow(0 5px 16px rgba(0, 0, 0, 0.95));
+      }
+      .cc-result-banner {
+        font-size: clamp(1.0rem, min(3.2vw, 1.85vh), 2.4rem);
+        padding: clamp(5px, 0.75vh, 13px) clamp(18px, 3.4vw, 42px);
+      }
+      .rider-pill-badge {
+        font-size: clamp(0.84rem, min(2.4vw, 1.4vh), 1.8rem);
+        padding: clamp(5px, 0.7vh, 11px) clamp(14px, 2.6vw, 30px);
+      }
+
+      /* --- End Screen: Score Summary Panel --- */
+      .cc-panel-glow {
+        max-width: min(94vw, 1000px);
+      }
+      .cc-panel-inner {
+        padding: clamp(10px, 1.3vh, 26px) clamp(14px, 2.8vw, 42px);
+      }
+      .cc-score-col {
+        padding: clamp(6px, 1vh, 20px) clamp(8px, 1.8vw, 30px);
+      }
+      .cc-your-score {
+        font-size: clamp(1.1rem, min(3.4vw, 1.95vh), 2.5rem);
+      }
+      .cc-score-val {
+        font-size: clamp(3.1rem, min(12vw, 6.8vh), 9.0rem);
+      }
+      .cc-target-pill {
+        font-size: clamp(0.84rem, min(2.3vw, 1.35vh), 1.75rem);
+        padding: clamp(3px, 0.45vh, 8px) clamp(10px, 1.8vw, 22px);
+      }
+      .cc-stat-row {
+        padding: clamp(5px, 0.85vh, 16px) 0;
+      }
+      .cc-stat-icon {
+        height: clamp(30px, min(6.2vw, 3.5vh), 70px);
+      }
+      .cc-stat-label {
+        font-size: clamp(0.92rem, min(2.8vw, 1.6vh), 2.1rem);
+      }
+      .cc-stat-num {
+        font-size: clamp(1.6rem, min(5.2vw, 2.9vh), 4.0rem);
+      }
+
+      /* --- End Screen: Large QR Code & Clear Follow Text --- */
+      .qr-prize-large {
+        max-width: min(94vw, 1000px);
+        padding: clamp(12px, 1.4vh, 26px) clamp(18px, 3.4vw, 40px);
+        gap: clamp(8px, 1.1vh, 18px);
+        border-width: 2px;
+      }
+      .qr-canvas-frame {
+        padding: clamp(8px, 1.1vw, 16px);
+        border-radius: 12px;
+      }
+      .qr-prize-large .qr-canvas-el {
+        width: clamp(165px, min(36vw, 19.5vh), 350px);
+        height: clamp(165px, min(36vw, 19.5vh), 350px);
+      }
+      .qr-yamaha-mini img {
+        height: clamp(20px, min(3.4vw, 2vh), 42px);
+      }
+      .qr-prize-eyebrow {
+        font-size: clamp(1.2rem, min(3.8vw, 2.2vh), 2.8rem);
+      }
+      .qr-prize-sub {
+        font-size: clamp(1.08rem, min(3.4vw, 1.95vh), 2.45rem);
+        font-weight: 900;
+        color: #ffffff;
+      }
+
+      /* --- End Screen: Action Buttons --- */
+      .cc-actions-row {
+        gap: clamp(12px, 2.2vw, 26px);
+      }
+      .cc-btn-hex {
+        width: clamp(170px, 40vw, 430px);
+        height: clamp(48px, min(9.2vw, 5.2vh), 102px);
+      }
+      .cc-btn-hex-wide {
+        width: clamp(215px, 48vw, 520px);
+      }
+      .cc-btn-label {
+        font-size: clamp(0.92rem, min(2.7vw, 1.55vh), 2.15rem);
+      }
+      .cc-btn-icon {
+        width: clamp(18px, min(3vw, 1.8vh), 34px);
+        height: clamp(18px, min(3vw, 1.8vh), 34px);
+      }
+
+      /* --- Leaderboard QR & Layout --- */
+      .lb-content {
+        justify-content: space-evenly;
+        padding-top: clamp(104px, 10.6vh, 192px);
+        padding-bottom: clamp(22px, 2.8vh, 48px);
+        gap: clamp(8px, 1.2vh, 22px);
+      }
+      .lb-qr-side .qr-canvas-el,
+      .qr-canvas-el {
+        width: clamp(145px, min(30vw, 17vh), 300px);
+        height: clamp(145px, min(30vw, 17vh), 300px);
+      }
+
+      /* --- Registration & Large High-Contrast Touch Keyboard --- */
+      .reg-content {
+        justify-content: space-evenly;
+        padding-top: clamp(148px, 13.5vh, 236px);
+        padding-bottom: clamp(20px, 2.4vh, 42px);
+        gap: clamp(10px, 1.4vh, 24px);
+      }
+      .reg-workspace {
+        max-width: min(96vw, 1020px);
+        gap: clamp(14px, 1.8vh, 30px);
+      }
+      .reg-keyboard-inner {
+        padding: clamp(14px, 1.6vh, 28px) clamp(12px, 2.2vw, 28px);
+        gap: clamp(7px, 0.95vh, 15px);
+      }
+      .reg-kb-target {
+        font-size: clamp(1rem, min(2.4vw, 1.4vh), 1.85rem);
+      }
+      .reg-kb-hint {
+        font-size: clamp(0.76rem, min(1.7vw, 1vh), 1.3rem);
+      }
+      .reg-kb-row {
+        gap: clamp(6px, 1vw, 13px);
+      }
+      .reg-kb-key {
+        height: clamp(48px, 4.4vh, 88px);
+        font-size: clamp(1.28rem, min(3.2vw, 2vh), 2.55rem);
+        font-weight: 900;
+        color: #ffffff;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        border-width: 2px;
+        border-color: rgba(255, 206, 84, 0.62);
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(54, 42, 26, 0.96) 0%, rgba(24, 18, 12, 0.99) 100%);
+      }
+      .reg-kb-key-num {
+        color: #fff3b0;
+        border-color: rgba(255, 214, 102, 0.72);
+      }
+      .reg-kb-key-fn {
+        font-size: clamp(0.95rem, min(2.3vw, 1.4vh), 1.85rem);
+        font-weight: 900;
+        color: #fef08a;
+        border-color: rgba(251, 191, 36, 0.78);
+      }
+      .reg-kb-key-danger {
+        color: #fee2e2;
+        border-color: rgba(248, 113, 113, 0.78);
+      }
+    }
+
+    @media (max-aspect-ratio: 9/10) and (min-height: 1700px) {
+      .cc-headline-top {
+        font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+      }
+      .cc-headline-main {
+        font-size: clamp(4.2rem, 11vw, 7.6rem);
+      }
+      .qr-prize-large .qr-canvas-el {
+        width: clamp(240px, 34vw, 370px);
+        height: clamp(240px, 34vw, 370px);
+      }
+      .reg-kb-key {
+        height: clamp(64px, 4.6vh, 92px);
+        font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+      }
+      .reg-kb-key-fn {
+        font-size: clamp(1.2rem, 2.4vw, 1.95rem);
       }
     }
   </style>
@@ -3789,18 +4061,18 @@
           </div>
         </div>
 
-        <!-- Scan QR Code — Follow Page & Win More Prizes -->
+        <!-- Scan QR Code — Follow Our Page -->
         <div id="ccQrCard" class="qr-prize-card qr-prize-large">
           <div class="qr-canvas-frame">
-            <canvas id="qrCanvasComplete" class="qr-canvas-el" width="380" height="380" data-qr-target-px="380" aria-label="Scan QR Code to Follow Yamaha Sri Lanka on Facebook &amp; Win More Prizes"></canvas>
+            <canvas id="qrCanvasComplete" class="qr-canvas-el" width="480" height="480" data-qr-target-px="480" aria-label="Scan QR to Follow Our Page"></canvas>
           </div>
           <div class="qr-prize-copy">
             <div class="qr-yamaha-mini">
               <img src="assets/yamaha-logo.png" alt="Yamaha" />
             </div>
             <span id="ccQrEyebrow" class="qr-prize-eyebrow">SCAN QR CODE</span>
-            <span id="ccQrSub" class="qr-prize-sub">FOLLOW OUR PAGE &amp; WIN MORE PRIZES!</span>
-            <span id="ccQrFollow" class="qr-prize-follow">Follow Yamaha Sri Lanka on Facebook (fb.com/YamahaLK) for more exciting gifts!</span>
+            <span id="ccQrSub" class="qr-prize-sub">Scan QR to Follow Our Page</span>
+            <span id="ccQrFollow" class="qr-prize-follow"></span>
           </div>
         </div>
 
@@ -3899,19 +4171,19 @@
             </div>
           </div>
 
-          <!-- Right / Bottom: Scan QR Code — Follow Page & Win More Prizes -->
+          <!-- Right / Bottom: Scan QR Code — Follow Our Page -->
           <div id="lbQrCard" class="lb-qr-side">
             <div class="qr-prize-card">
               <div class="qr-canvas-frame">
-                <canvas id="qrCanvasLeaderboard" class="qr-canvas-el" width="320" height="320" data-qr-target-px="320" aria-label="Scan QR Code to Follow Yamaha Sri Lanka on Facebook &amp; Win More Prizes"></canvas>
+                <canvas id="qrCanvasLeaderboard" class="qr-canvas-el" width="480" height="480" data-qr-target-px="480" aria-label="Scan QR to Follow Our Page"></canvas>
               </div>
               <div class="qr-prize-copy">
                 <div class="qr-yamaha-mini">
                   <img src="assets/yamaha-logo.png" alt="Yamaha" />
                 </div>
                 <span class="qr-prize-eyebrow">SCAN QR CODE</span>
-                <span class="qr-prize-sub">FOLLOW OUR PAGE &amp; WIN MORE PRIZES!</span>
-                <span class="qr-prize-follow">Follow Yamaha Sri Lanka on Facebook (fb.com/YamahaLK) to enter our prize draws!</span>
+                <span class="qr-prize-sub">Scan QR to Follow Our Page</span>
+                <span class="qr-prize-follow"></span>
               </div>
             </div>
           </div>
@@ -4107,10 +4379,39 @@
   </div>
 
   <!-- =============================================================== -->
-  <!-- ENV-SYNCED PUBLIC CLIENT CONFIG & GAME ENGINE                   -->
+  <!-- SUPABASE BROWSER CLIENT (CDN) & GAME ENGINE                     -->
   <!-- =============================================================== -->
-  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // =========================================================================
+    // SUPABASE CONFIGURATION (Static GitHub Pages Frontend)
+    // Replace these placeholders with your Supabase Project URL and Anon Key.
+    // =========================================================================
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+    const SUPABASE_TABLE = "game_scores";
+    const CAMPAIGN_FOLLOW_URL = "https://www.facebook.com/YamahaLK/";
+
+    const isSupabaseConfigured =
+      typeof SUPABASE_URL === "string" &&
+      /^https?:\/\//i.test(SUPABASE_URL.trim()) &&
+      !SUPABASE_URL.includes("YOUR_SUPABASE_URL") &&
+      typeof SUPABASE_ANON_KEY === "string" &&
+      SUPABASE_ANON_KEY.trim().length > 0 &&
+      !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE_ANON_KEY");
+
+    let supabaseClient = null;
+    if (isSupabaseConfigured && window.supabase && typeof window.supabase.createClient === "function") {
+      try {
+        supabaseClient = window.supabase.createClient(
+          SUPABASE_URL.trim().replace(/\/+$/, ""),
+          SUPABASE_ANON_KEY.trim()
+        );
+      } catch (err) {
+        console.warn("Supabase client initialization skipped:", err);
+        supabaseClient = null;
+      }
+    }
     /**
      * ROAD TRIP REFLEX - Full Arcade Game Engine
      * Featuring:
@@ -4298,25 +4599,6 @@
 
     const sound = new SoundEngine();
 
-    // --- SUPABASE & CAMPAIGN CONFIG (Loaded from .env via server.mjs / config.js — never expose secret key in browser) ---
-    const APP_CFG = window.__XSR_CONFIG__ || {};
-    const SUPABASE_URL = String(APP_CFG.supabaseUrl || '').replace(/\/+$/, '');
-    const SUPABASE_PUBLISHABLE_KEY = String(APP_CFG.supabasePublishableKey || '').trim();
-    const SUPABASE_TABLE = String(APP_CFG.supabaseTable || 'leaderboard_entries').trim();
-    const CAMPAIGN_FOLLOW_URL = String(APP_CFG.campaignFollowUrl || 'https://www.facebook.com/YamahaLK/').trim();
-    const LOCAL_API_BASE = String(APP_CFG.apiBase || '').replace(/\/+$/, '');
-
-    function buildSupabaseHeaders(extra = {}) {
-      const headers = {
-        apikey: SUPABASE_PUBLISHABLE_KEY,
-        Accept: 'application/json',
-        ...extra
-      };
-      if (SUPABASE_PUBLISHABLE_KEY.startsWith('eyJ')) {
-        headers.Authorization = `Bearer ${SUPABASE_PUBLISHABLE_KEY}`;
-      }
-      return headers;
-    }
     const REAL_LEADERBOARD_STORAGE_KEY = 'xsr_real_leaderboard_v1';
     const KIOSK_SETTINGS_STORAGE_KEY = 'xsr_kiosk_settings_v1';
     const DEFAULT_KIOSK_SETTINGS = {
@@ -4820,8 +5102,13 @@
       resetRoadPointerState();
       if (settingsModal) settingsModal.classList.add('hidden');
       if (gameContainer) {
+        gameContainer.classList.toggle('is-screen-title', state === GameState.TITLE);
         gameContainer.classList.toggle('is-screen-howto', state === GameState.HOW_TO_PLAY);
         gameContainer.classList.toggle('is-screen-register', state === GameState.REGISTER);
+        gameContainer.classList.toggle('is-screen-countdown', state === GameState.COUNTDOWN);
+        gameContainer.classList.toggle('is-screen-playing', state === GameState.PLAYING);
+        gameContainer.classList.toggle('is-screen-complete', state === GameState.COMPLETE);
+        gameContainer.classList.toggle('is-screen-leaderboard', state === GameState.LEADERBOARD);
       }
       if (btnKioskSettings) {
         btnKioskSettings.classList.remove('hidden');
@@ -6586,10 +6873,8 @@
       }
       if (ccQrEyebrow && ccQrSub && ccQrFollow) {
         ccQrEyebrow.textContent = 'SCAN QR CODE';
-        ccQrSub.textContent = 'FOLLOW OUR PAGE & WIN MORE PRIZES!';
-        ccQrFollow.textContent = isWinner
-          ? 'Follow Yamaha Sri Lanka on Facebook (fb.com/YamahaLK) for more exciting gifts!'
-          : 'Follow Yamaha Sri Lanka on Facebook (fb.com/YamahaLK) to enter our prize draws!';
+        ccQrSub.textContent = 'Scan QR to Follow Our Page';
+        ccQrFollow.textContent = '';
       }
 
       const targetScore = score;
@@ -7169,11 +7454,15 @@
 
     function getRankForCurrentRun(entries, targetRun) {
       if (!targetRun || !entries.length) return null;
-      const idx = entries.findIndex((r) =>
-        normalizeMobile(r.mobile_number) === normalizeMobile(targetRun.mobile_number) &&
-        Number(r.score) === Number(targetRun.score) &&
-        r.player_name.toLowerCase() === targetRun.player_name.toLowerCase()
-      );
+      const targetPhone = normalizeMobile(targetRun.phone ?? targetRun.mobile_number ?? '');
+      const idx = entries.findIndex((r) => {
+        const rowPhone = normalizeMobile(r.phone ?? r.mobile_number ?? '');
+        return (
+          (!targetPhone || rowPhone === targetPhone) &&
+          Number(r.score) === Number(targetRun.score) &&
+          String(r.player_name || '').toLowerCase() === String(targetRun.player_name || '').toLowerCase()
+        );
+      });
       return idx >= 0 ? (idx + 1) : null;
     }
 
@@ -7187,40 +7476,33 @@
       const rankTxt = rank ? ` • RANK #${rank}` : '';
       const syncTxt = leaderboardSyncState === 'synced'
         ? ' • SAVED LIVE'
-        : (leaderboardSyncState === 'pending_setup' ? ' • SAVED ON KIOSK (CLOUD TABLE PENDING)' : ' • SAVED ON KIOSK');
+        : (leaderboardSyncState === 'pending_setup' ? ' • SAVED ON KIOSK (CLOUD SETUP PENDING)' : ' • SAVED ON KIOSK');
       completeRiderBadge.textContent = `RIDER: ${currentPlayer.name}${rankTxt}${syncTxt}`;
       completeRiderBadge.classList.remove('hidden');
     }
 
     async function fetchSupabaseLeaderboard() {
       const localEntries = loadRealLocalLeaderboard();
-      const useLocalApi = Boolean(LOCAL_API_BASE);
-      if (!useLocalApi && (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY)) {
-        leaderboardSyncState = 'pending_setup';
+      if (!supabaseClient) {
+        leaderboardSyncState = isSupabaseConfigured ? 'offline' : 'pending_setup';
         realLeaderboardEntries = localEntries;
         return realLeaderboardEntries;
       }
       try {
-        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-        const timeoutId = controller ? setTimeout(() => controller.abort(), 5500) : null;
-        const targetUrl = useLocalApi
-          ? `${LOCAL_API_BASE}/leaderboard`
-          : `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?select=id,player_name,mobile_number,score,markers_collected,obstacles_avoided,created_at&order=score.desc,created_at.asc&limit=50`;
-        const resp = await fetch(targetUrl, {
-          method: 'GET',
-          headers: useLocalApi ? { Accept: 'application/json' } : buildSupabaseHeaders(),
-          signal: controller ? controller.signal : undefined
-        });
-        if (timeoutId) clearTimeout(timeoutId);
+        const { data, error } = await supabaseClient
+          .from(SUPABASE_TABLE)
+          .select('id, player_name, phone, score, play_time, result_status, created_at')
+          .order('score', { ascending: false })
+          .order('created_at', { ascending: true })
+          .limit(50);
 
-        if (resp.ok) {
-          const rows = await resp.json();
-          realLeaderboardEntries = Array.isArray(rows) ? rows : [];
+        if (!error && Array.isArray(data)) {
+          realLeaderboardEntries = data;
           leaderboardSyncState = 'synced';
           return realLeaderboardEntries;
         }
-        const errBody = await resp.text();
-        if (resp.status === 404 || errBody.includes('PGRST205') || errBody.includes('pendingSetup')) {
+        const errMsg = String((error && (error.message || error.code || error.details)) || '');
+        if (error && (error.code === 'PGRST205' || error.code === '42P01' || errMsg.includes('PGRST205'))) {
           leaderboardSyncState = 'pending_setup';
         } else {
           leaderboardSyncState = 'offline';
@@ -7233,13 +7515,19 @@
     }
 
     async function handleChallengeCompleteScoreSync() {
-      if (!currentPlayer) return;
+      const playerName = (currentPlayer && currentPlayer.name) ? currentPlayer.name : 'RIDER';
+      const playerPhone = (currentPlayer && currentPlayer.mobile && currentPlayer.mobile.trim())
+        ? currentPlayer.mobile.trim()
+        : null;
+      const playTimeSec = Math.max(0, Math.round(Number(kioskSettings.roundDurationSec) || 30));
+      const resultStatus = score >= kioskSettings.winTargetScore ? 'WIN' : 'FAILED';
+
       const runEntry = {
-        player_name: currentPlayer.name,
-        mobile_number: currentPlayer.mobile,
-        score: score,
-        markers_collected: markersCollected,
-        obstacles_avoided: obstaclesAvoided,
+        player_name: playerName,
+        phone: playerPhone,
+        score: Number(score) || 0,
+        play_time: playTimeSec,
+        result_status: resultStatus,
         created_at: new Date().toISOString()
       };
       lastSavedRun = runEntry;
@@ -7249,43 +7537,32 @@
       realLeaderboardEntries = saveRealLocalEntry(runEntry);
       updateCompleteRiderBadge(realLeaderboardEntries);
 
-      const useLocalApi = Boolean(LOCAL_API_BASE);
-      if (!useLocalApi && (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY)) {
-        leaderboardSyncState = 'pending_setup';
+      if (!supabaseClient) {
+        leaderboardSyncState = isSupabaseConfigured ? 'offline' : 'pending_setup';
         updateCompleteRiderBadge(realLeaderboardEntries);
         if (currentState === GameState.LEADERBOARD) renderLeaderboardUI(realLeaderboardEntries);
         return;
       }
 
-      // Push real score to Supabase (via .env backend API when served by server.mjs, or direct REST on GitHub Pages)
+      // Insert player's result directly into Supabase "game_scores" table
       try {
-        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-        const timeoutId = controller ? setTimeout(() => controller.abort(), 6000) : null;
-        const postUrl = useLocalApi
-          ? `${LOCAL_API_BASE}/leaderboard`
-          : `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`;
-        const postHeaders = useLocalApi
-          ? { 'Content-Type': 'application/json', Accept: 'application/json' }
-          : buildSupabaseHeaders({ 'Content-Type': 'application/json', Prefer: 'return=representation' });
-        const resp = await fetch(postUrl, {
-          method: 'POST',
-          headers: postHeaders,
-          body: JSON.stringify({
+        const { error } = await supabaseClient
+          .from(SUPABASE_TABLE)
+          .insert({
             player_name: runEntry.player_name,
-            mobile_number: runEntry.mobile_number,
+            phone: runEntry.phone,
             score: runEntry.score,
-            markers_collected: runEntry.markers_collected,
-            obstacles_avoided: runEntry.obstacles_avoided
-          }),
-          signal: controller ? controller.signal : undefined
-        });
-        if (timeoutId) clearTimeout(timeoutId);
+            play_time: runEntry.play_time,
+            result_status: runEntry.result_status
+          });
 
-        if (resp.ok) {
+        if (!error) {
           await fetchSupabaseLeaderboard();
         } else {
-          const errText = await resp.text();
-          leaderboardSyncState = (resp.status === 404 || errText.includes('PGRST205')) ? 'pending_setup' : 'offline';
+          const errMsg = String(error.message || error.code || '');
+          leaderboardSyncState = (error.code === 'PGRST205' || error.code === '42P01' || errMsg.includes('PGRST205'))
+            ? 'pending_setup'
+            : 'offline';
         }
       } catch (e) {
         leaderboardSyncState = 'offline';
@@ -7304,13 +7581,13 @@
         } else if (leaderboardSyncState === 'synced') {
           lbSyncLabel.textContent = `LIVE LEADERBOARD • ${entries.length} REAL ${entries.length === 1 ? 'RIDER' : 'RIDERS'}`;
         } else if (leaderboardSyncState === 'pending_setup') {
-          lbSyncLabel.textContent = 'KIOSK SCORES • CLOUD TABLE SETUP PENDING';
+          lbSyncLabel.textContent = 'KIOSK SCORES • CLOUD SETUP PENDING';
         } else {
           lbSyncLabel.textContent = `KIOSK SESSION SCORES • ${entries.length} REAL ${entries.length === 1 ? 'RIDER' : 'RIDERS'}`;
         }
       }
 
-      const activeMobileNorm = currentPlayer ? currentPlayer.mobileNorm : (lastSavedRun ? normalizeMobile(lastSavedRun.mobile_number) : '');
+      const activeMobileNorm = currentPlayer ? currentPlayer.mobileNorm : (lastSavedRun ? normalizeMobile(lastSavedRun.phone ?? lastSavedRun.mobile_number) : '');
       const rank = getRankForCurrentRun(entries, lastSavedRun);
 
       if (lbYourSummary && lbYourName && lbYourScore) {
@@ -7339,7 +7616,8 @@
       entries.forEach((row, idx) => {
         const rankNum = idx + 1;
         const rowEl = document.createElement('div');
-        const rowMobileNorm = normalizeMobile(row.mobile_number);
+        const rowPhoneRaw = row.phone ?? row.mobile_number ?? '';
+        const rowMobileNorm = normalizeMobile(rowPhoneRaw);
         const isCurrentRider = Boolean(activeMobileNorm && rowMobileNorm === activeMobileNorm);
         rowEl.className = `lb-row${isCurrentRider ? ' is-me' : ''}`;
 
@@ -7354,13 +7632,13 @@
         nameEl.textContent = row.player_name || 'RIDER';
         const mobileEl = document.createElement('span');
         mobileEl.className = 'lb-rider-mobile';
-        mobileEl.textContent = maskMobile(row.mobile_number);
+        mobileEl.textContent = rowPhoneRaw ? maskMobile(rowPhoneRaw) : 'KIOSK RIDER';
         riderCol.appendChild(nameEl);
         riderCol.appendChild(mobileEl);
 
         const markersEl = document.createElement('div');
         markersEl.className = 'lb-markers-col';
-        markersEl.textContent = `${Number(row.markers_collected || 0)} PINS`;
+        markersEl.textContent = row.result_status ? String(row.result_status) : `${Number(row.play_time || 0)}S`;
 
         const scoreEl = document.createElement('div');
         scoreEl.className = 'lb-score-col';
