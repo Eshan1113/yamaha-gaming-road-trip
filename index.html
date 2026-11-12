@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080a0f">
   <title>Road Trip Reflex | Yamaha XSR Challenge</title>
 
   <!-- Priority-load Title backdrop first -->
@@ -14,6 +16,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Barlow:ital,wght@1,600;1,800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root, html, body, #gameContainer, #gameContainer * {
+      color-scheme: dark;
+      color-scheme: only dark;
+      forced-color-adjust: none;
+      -webkit-forced-color-adjust: none;
+    }
+
     /* Lightweight zero-dependency utility rules (replaces render-blocking Tailwind CDN) */
     .shell-body {
       width: 100vw;
